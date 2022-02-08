@@ -135,7 +135,7 @@ class Plugin {
       }
     }
 
-    let toSRButtonContainer = document.createElement('div');
+    
     let toSpaceRiftButton = document.createElement('button');
     toSpaceRiftButton.style.width = '100%';
     toSpaceRiftButton.style.marginBottom = '10px';
@@ -153,17 +153,17 @@ class Plugin {
         }
       }
     }
-    toSRButtonContainer.appendChild(toSpaceRiftButton);
     
+    let toSRButtonContainer = document.createElement('div');
     let toSpaceRiftAutoBox = document.createElement('input');
     toSpaceRiftAutoBox.type = "checkbox";
     toSpaceRiftAutoBox.style.paddingRight = "10px";
-    toSRButtonContainer.appendChild(toSpaceRiftAutoBox);
+    
     
     let toSpaceRiftAutoBoxLabel = document.createElement('label');
     toSpaceRiftAutoBoxLabel.innerHTML = "Every X Mins";
     toSpaceRiftAutoBoxLabel.style.paddingRight = "10px";
-    toSRButtonContainer.appendChild(toSpaceRiftAutoBoxLabel);
+    
     
     let toSpaceRiftAutoBoxMin = document.createElement('input');
     toSpaceRiftAutoBoxMin.type = "number";
@@ -172,7 +172,23 @@ class Plugin {
     toSpaceRiftAutoBoxMin.value = "1";
     toSpaceRiftAutoBoxMin.step = "1";
     toSpaceRiftAutoBoxMin.readonly = "true";
-    toSpaceRiftAutoBoxMin.style.paddingRight = "10px";
+    
+    toSpaceRiftAutoBox.onchange = (evt) => {
+      if (evt.target.checked) {
+        let timeoutvalue = Math.floor(parseFloat(toSpaceRiftAutoBox.value));
+        if(timeoutvalue < 1 || timeoutvalue > 60){
+         timeoutvalue = 1; 
+        }
+        this.sendTimer = setInterval(() => {
+          setTimeout(() => {toSpaceRiftButton.click()}, 0);
+        }, 1000 * 60 * timeoutvalue)
+      } else {
+        this.clearSendTimer();
+      }
+    };
+    toSRButtonContainer.appendChild(toSpaceRiftAutoBox);
+    
+    toSRButtonContainer.appendChild(toSpaceRiftAutoBoxLabel);
     toSRButtonContainer.appendChild(toSpaceRiftAutoBoxMin);
 
     let withdrawtButton = document.createElement('button');
@@ -204,9 +220,10 @@ class Plugin {
     container.appendChild(levelAsteroid);
     container.appendChild(button);
     container.appendChild(asteroidButton);
-    container.appendChild(toSRButtonContainer);
+    container.appendChild(toSpaceRiftButton);
     container.appendChild(withdrawtButton);
     container.appendChild(message);
+    container.appendChild(toSRButtonContainer);
   }
 }
 
