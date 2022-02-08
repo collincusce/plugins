@@ -183,6 +183,7 @@ class Plugin {
           setTimeout(() => {toSpaceRiftButton.click()}, 0);
         }, 1000 * 60 * timeoutvalue)
       } else {
+        console.log("Distribute Silver Auto: STOPPED");
         this.clearSendTimer();
       }
     };
@@ -224,6 +225,20 @@ class Plugin {
     container.appendChild(withdrawtButton);
     container.appendChild(message);
     container.appendChild(toSRButtonContainer);
+  }
+  clearSendTimer() {
+    if (this.sendTimer) {
+      clearInterval(this.sendTimer);
+    }
+  }
+  clearWithdrawTimer() {
+    if (this.withdrawTimer) {
+      clearInterval(this.withdrawTimer);
+    }
+  }
+  destroy() {
+    this.clearSendTimer()
+    this.clearWithdrawTimer()
   }
 }
 
