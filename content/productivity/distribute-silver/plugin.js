@@ -179,7 +179,7 @@ class Plugin {
         if(timeoutvalue < 1 || timeoutvalue > 60){
          timeoutvalue = 1; 
         }
-        console.log("Distribute Silver Auto: STOPPED");
+        console.log("Distribute Silver Auto: STARTED");
         this.sendTimer = setInterval(() => {
           console.log("Distribute Silver Auto: CALLED with " + timeoutvalue + " minutes");
           setTimeout(() => {toSpaceRiftButton.click()}, 0);
