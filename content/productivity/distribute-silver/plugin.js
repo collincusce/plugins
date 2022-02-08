@@ -175,11 +175,11 @@ class Plugin {
     
     toSpaceRiftAutoBox.onchange = (evt) => {
       if (evt.target.checked) {
-        let timeoutvalue = Math.floor(parseFloat(toSpaceRiftAutoBox.value));
+        let timeoutvalue = Math.floor(parseFloat(toSpaceRiftAutoBoxMin.value));
         if(timeoutvalue < 1 || timeoutvalue > 60){
          timeoutvalue = 1; 
         }
-        console.log("Distribute Silver Auto: STARTED");
+        console.log("Distribute Silver Auto: STARTED with " + timeoutvalue + " minutes");
         this.sendTimer = setInterval(() => {
           console.log("Distribute Silver Auto: CALLED with " + timeoutvalue + " minutes");
           setTimeout(() => {toSpaceRiftButton.click()}, 0);
