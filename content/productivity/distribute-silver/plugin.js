@@ -135,6 +135,7 @@ class Plugin {
       }
     }
 
+    let toSRButtonContainer = document.createElement('div');
     let toSpaceRiftButton = document.createElement('button');
     toSpaceRiftButton.style.width = '100%';
     toSpaceRiftButton.style.marginBottom = '10px';
@@ -152,6 +153,27 @@ class Plugin {
         }
       }
     }
+    toSRButtonContainer.appendChild(toSpaceRiftButton);
+    
+    let toSpaceRiftAutoBox = document.createElement('input');
+    toSpaceRiftAutoBox.type = "checkbox";
+    toSpaceRiftAutoBox.style.paddingRight = "10px";
+    toSRButtonContainer.appendChild(toSpaceRiftAutoBox);
+    
+    let toSpaceRiftAutoBoxLabel = document.createElement('label');
+    toSpaceRiftAutoBoxLabel.innerHTML = "Every X Mins";
+    toSpaceRiftAutoBoxLabel.style.paddingRight = "10px";
+    toSRButtonContainer.appendChild(toSpaceRiftAutoBoxLabel);
+    
+    let toSpaceRiftAutoBoxMin = document.createElement('input');
+    toSpaceRiftAutoBoxMin.type = "number";
+    toSpaceRiftAutoBoxMin.min = "1";
+    toSpaceRiftAutoBoxMin.max = "60";
+    toSpaceRiftAutoBoxMin.value = "1";
+    toSpaceRiftAutoBoxMin.step = "1";
+    toSpaceRiftAutoBoxMin.readonly = "true";
+    toSpaceRiftAutoBoxMin.style.paddingRight = "10px";
+    toSRButtonContainer.appendChild(toSpaceRiftAutoBoxMin);
 
     let withdrawtButton = document.createElement('button');
     withdrawtButton.style.width = '100%';
@@ -182,7 +204,7 @@ class Plugin {
     container.appendChild(levelAsteroid);
     container.appendChild(button);
     container.appendChild(asteroidButton);
-    container.appendChild(toSpaceRiftButton);
+    container.appendChild(toSRButtonContainer);
     container.appendChild(withdrawtButton);
     container.appendChild(message);
   }
